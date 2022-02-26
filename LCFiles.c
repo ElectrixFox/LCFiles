@@ -9,11 +9,18 @@ const char* ReadFile(const char* FilePath)
 
     FILE* fp = fopen(FilePath, "r");
 
-    fgets(buff, 1024, fp);
+    for (int i = 0; i < 2; i++)
+    {
+        fgets(buff, 1024, fp);
+        strcat(stream, buff);
+
+        //printf("\n%d: %s", i, stream);
+    }
+    
 
     fclose(fp);
 
-    const char* output = buff;
+    const char* output = stream;
 
     return output;
 }

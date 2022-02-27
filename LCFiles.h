@@ -4,9 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <LCString.h>
+int getLines(const char* FilePath);
 
 const char* ReadFile(const char* FilePath);
-
 
 #endif

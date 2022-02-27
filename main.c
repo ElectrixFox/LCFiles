@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -6,6 +5,8 @@
 
 int main()
 {
-    printf("%s", ReadFile("Hello.txt"));
+    char* fil = ReadFile("Hello.txt");
+    printf("%s", fil);
+
     return 0;
 }

@@ -1,6 +1,6 @@
 #include "LCFiles.h"
 
-int getLines(const char* FilePath)
+int GetLines(const char* FilePath)
 {
     // Opens file to read
     FILE* fp = fopen(FilePath, "r");
@@ -50,7 +50,7 @@ const char* ReadFile(const char* FilePath)
     FILE* fp = fopen(FilePath, "r");
 
     // Finds out how many times getting a line has to be iterated .
-    int line_count = getLines(FilePath);
+    int line_count = GetLines(FilePath);
 
     for (int i = 0; i < line_count; i++)
     {
@@ -70,4 +70,52 @@ const char* ReadFile(const char* FilePath)
     const char* output = stream;
 
     return output;
+}
+
+int WriteFile(const char* FilePath, const char* text)
+{
+    // If the file exists then it does it.
+    if(Exists(FilePath) != -1)
+    {
+        FILE* fp = fopen(FilePath, "w");
+
+        // Puts the text into the file.
+        fputs(text, fp);
+
+        fclose(fp);
+    }
+}
+
+int CreateFile(const char* FilePath)
+{
+    // Creates the file if it doesn't exist.
+    if(Exists(FilePath) == -1)
+    {
+        FILE* fp = fopen(FilePath, "w"); 
+        fclose(fp);
+
+        return 1;
+    }
+
+    return -1;
+}
+
+int Exists(const char* FilePath)
+{
+    // If it opens it exists.
+    return (fopen(FilePath, "r") == 0) ? -1 : 1;
+}
+
+int AppendFile(const char* FilePath, const char* text)
+{
+    if(Exists(FilePath) != -1)
+    {
+        // Opens the file for appending.
+        FILE* fp = fopen(FilePath, "a");
+
+        // Puts the text in the file.
+        fputs(text, fp);
+
+        fclose(fp);
+    }
 }

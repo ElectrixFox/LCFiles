@@ -3,10 +3,13 @@
 
 #include <LCFiles.h>
 
-int main()
+int main(int argc, const char *argv[])
 {
-    const char* fil = ReadFile("Hello.txt");
-    printf("%s", fil);
+    CreateFile(argv[3]);
+    const char* fil = ReadFile(argv[1]);
+    WriteFile(argv[3], argv[4]);
 
+    AppendFile(argv[1], argv[2]);
+    printf("%s", fil);
     return 0;
 }

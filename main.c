@@ -5,7 +5,7 @@
 
 int main()
 {
-    char* fil = ReadFile("Hello.txt");
+    const char* fil = ReadFile("Hello.txt");
     printf("%s", fil);
 
     return 0;

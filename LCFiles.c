@@ -23,7 +23,19 @@ int getLines(const char* FilePath)
 
 int GetSize(const char* FilePath)
 {
+    int size = 0;
+
+    FILE* fp = fopen(FilePath, "r");
+
+    // Looks for the end of the file.
+    fseek(fp, 0L, SEEK_END);
+
+    // Gets the position of seek.
+    size = ftell(fp);
+
+    fclose(fp);
     
+    return size;
 }
 
 const char* ReadFile(const char* FilePath)

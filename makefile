@@ -1,17 +1,21 @@
 CXX = gcc
-CXXFLAGS = -I. -L.
+CXXFLAGS = -I.
 
 APPNAME = main
 
-#LIBS = -lLCStr
+LIBS = -L. -lLCFls
 
-SRCFILES := $(wildcard *.c)
+SRCFILES := $(filter-out LCFiles.c, $(wildcard *.c))
 OBJFILES := $(addprefix obj/, $(patsubst %.c, %.o, $(SRCFILES)))
 
 obj/%.o: %.c
-	$(CXX) $(CXXFLAGS) -c -o $@ $^ $(LIBS)
+	$(CXX) $(CXXFLAGS) -c -o $@ $^
 
 all: $(OBJFILES)
-	$(CXX) $(CXXFLAGS) $^ -o $(APPNAME)
+	$(CXX) $(CXXFLAGS) $^ -o $(APPNAME) $(LIBS)
 
-#$(LIBS)
+lib:
+	$(CXX) $(CXXFLAGS) -c -o obj/LCFiles.o LCFiles.c
+	ar rcs LCFls.lib obj/LCFiles.o
+
+both: lib all
